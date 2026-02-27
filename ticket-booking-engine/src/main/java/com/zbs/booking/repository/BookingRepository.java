@@ -11,4 +11,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     @Query("SELECT b FROM Booking b JOIN FETCH b.tickets")
     List<Booking> findAllWithTicketsFetch();
+
+    @Query(value = "SELECT * FROM bookings", nativeQuery = true)
+    List<Booking> findAllIncludingCancelledNative();
 }
