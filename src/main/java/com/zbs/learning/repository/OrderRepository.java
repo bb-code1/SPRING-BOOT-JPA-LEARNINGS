@@ -1,4 +1,4 @@
-﻿package com.zbs.learning.repository;
+package com.zbs.learning.repository;
 
 import com.zbs.learning.domain.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

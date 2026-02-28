@@ -1,4 +1,4 @@
-﻿package com.zbs.learning.domain;
+package com.zbs.learning.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

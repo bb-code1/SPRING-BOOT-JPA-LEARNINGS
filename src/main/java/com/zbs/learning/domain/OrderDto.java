@@ -1,4 +1,4 @@
-﻿package com.zbs.learning.domain;
+package com.zbs.learning.domain;
 import lombok.Value;
 
 @Value
