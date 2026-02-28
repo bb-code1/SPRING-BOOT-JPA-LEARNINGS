@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPA Ticket Booking Engine - Showcase Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <h1>JPA & Hibernate Concurrency Engine</h1>
+            <p class="subtitle">Production-Grade Event Reservation Sandbox Dashboard</p>
+        </header>
+
+        <!-- Main Workspace Grid -->
+        <main class="dashboard-grid">
+            <!-- Left Panel: Event Catalog & Specs -->
+            <section class="panel specs-panel">
+                <h2>🔍 Event Search Console</h2>
+                <p class="section-desc">Test dynamic JPA Specifications & Keyset Pagination in real time.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Event Name</label>
+                        <input type="text" id="searchName" placeholder="e.g. Taylor Swift">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="searchLocation" placeholder="e.g. London">
+                    </div>
+                </div>
+
+                <div class="form-row button-row">
+                    <button class="btn btn-primary" onclick="searchEvents(0)">Run Offset Search</button>
+                    <button class="btn btn-secondary" onclick="searchEventsKeyset()">Run Keyset Seek</button>
+                </div>
+
+                <div class="metrics-bar">
+                    <span>Performance: <strong id="queryTime">0ms</strong></span>
+                    <span>Result Type: <strong id="queryType">N/A</strong></span>
+                </div>
+
+                <div class="event-list-container">
+                    <table class="data-table" id="eventTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Event Name</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Right Panel: Live Concurrency Booking Simulation -->
+            <section class="panel booking-panel">
+                <h2>⚡ Concurrency & Locking Simulation</h2>
+                <p class="section-desc">Run 10 threads concurrently trying to book the last available tickets for Taylor Swift (ID: 1).</p>
+                
+                <div class="simulation-actions">
+                    <button class="btn btn-accent" onclick="runConcurrencySimulation()">Launch Concurrent Stress Test</button>
+                </div>
+
+                <!-- Seat Visualizer Grid -->
+                <div class="seat-grid-container">
+                    <h3>Event Inventory Seats (Taylor Swift - 50 Seats Total)</h3>
+                    <div class="seat-grid" id="seatGrid">
+                        <!-- 50 seat boxes loaded dynamically -->
+                    </div>
+                </div>
+
+                <div class="simulation-logs" id="simLogs">
+                    <div class="log-entry">Waiting for stress test launch...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Panel: Database Audits & Soft Deletes -->
+        <footer class="panel audit-panel">
+            <div class="audit-header">
+                <h2>📦 Bookings Audit & Soft-Delete Manager</h2>
+                <button class="btn btn-secondary" onclick="toggleAdminMode()" id="adminModeBtn">Toggle Admin Mode (Show Cancelled)</button>
+            </div>
+            <p class="section-desc">View active bookings (filtered by `@Where`). Toggle Admin mode to view soft-deleted bookings raw via Native Queries.</p>
+            
+            <div class="audit-list-container">
+                <table class="data-table" id="bookingTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Status</th>
+                            <th>Date Created</th>
+                            <th>Last Modified</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
