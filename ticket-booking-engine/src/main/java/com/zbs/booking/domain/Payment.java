@@ -3,6 +3,7 @@ package com.zbs.booking.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "payments")
@@ -21,5 +22,5 @@ public abstract class Payment extends BaseEntity {
     private Long bookingId;
 
     @Column(name = "amount", nullable = false)
-    private Double amount;
+    private BigDecimal amount; // Preserves financial precision
 }

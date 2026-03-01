@@ -3,6 +3,7 @@ package com.zbs.booking.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tickets")
@@ -19,5 +20,5 @@ public class Ticket {
     private String seatNumber;
 
     @Column(name = "price", nullable = false)
-    private Double price;
+    private BigDecimal price; // Preserves financial precision
 }
