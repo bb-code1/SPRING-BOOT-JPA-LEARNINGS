@@ -40,7 +40,7 @@ public class ReservationService {
         for (int i = 1; i <= quantity; i++) {
             Ticket ticket = new Ticket();
             ticket.setSeatNumber("SEAT-" + eventId + "-" + (inventory.getTotalAvailable() + i));
-            ticket.setPrice(new BigDecimal("150.00")); // Decoupled Double to BigDecimal
+            ticket.setPrice(new BigDecimal("150.00"));
             booking.addTicket(ticket);
         }
 
@@ -52,7 +52,7 @@ public class ReservationService {
         return savedBooking;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED) // Fixed READ_COMMITTED isolation desync
     public void saveBookingAuditLog(Long bookingId, String action) {
         Booking booking = bookingRepository.findById(bookingId).orElseThrow();
         booking.setStatus("CONFIRMED");
