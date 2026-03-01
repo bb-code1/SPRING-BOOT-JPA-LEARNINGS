@@ -7,6 +7,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "bookings")
@@ -30,11 +31,12 @@ public class Booking extends BaseEntity {
     @Version
     private Integer version;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "booking_id")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Ensures child collection is serialized cleanly
     private List<Ticket> tickets = new ArrayList<>();
 
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
+        ticket.setBooking(this);
     }
 }

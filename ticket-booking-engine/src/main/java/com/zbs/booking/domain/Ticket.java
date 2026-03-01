@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "tickets")
@@ -20,5 +21,10 @@ public class Ticket {
     private String seatNumber;
 
     @Column(name = "price", nullable = false)
-    private BigDecimal price; // Preserves financial precision
+    private BigDecimal price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "booking_id", nullable = false)
+    @JsonBackReference // Prevents infinite recursion during Jackson JSON serialization
+    private Booking booking;
 }
